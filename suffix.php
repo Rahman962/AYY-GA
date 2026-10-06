@@ -124,7 +124,7 @@ $valt = isset($_SESSION['valt']) ? $_SESSION['valt'] : null;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suffix – AYY-HP</title>
+    <title>Suffix - AYY-HP</title>
     <link rel="stylesheet" href="suffix.css">
 </head>
 
