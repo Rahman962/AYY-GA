@@ -41,7 +41,7 @@
     <nav class="category-nav">
         <a class="category-link active" href="#">Alla övningar</a>
         <a class="category-link" href="prefix.html">Prefix</a>
-        <a class="category-link" href="suffix.html">Suffix</a>
+        <a class="category-link" href="suffix.php">Suffix</a>
         <a class="category-link" href="synonymer.html">Synonymer</a>
     </nav>
 
@@ -61,7 +61,7 @@
                     <h3>Suffix</h3>
                     <p>Träna på ändelser som "-het", "-lig" och "-bar" och hur de styr ordklass.</p>
                     <span class="exercise-meta">12 frågor · ca 6 min · tips vid fel svar</span>
-                    <a class="btn btn-primary" href="suffix.html">Öva nu</a>
+                    <a class="btn btn-primary" href="suffix.php">Öva nu</a>
                 </article>
 
                 <article class="exercise-card">
@@ -100,7 +100,7 @@
         <div class="footer-bottom">
             <span class="logo">AYY-HP</span>
             <a href="login.html">Logga in</a>
-            <p>Skolprojekt av Yaman</p>
+            <p>Skolprojekt av AYY</p>
         </div>
     </footer>
 
