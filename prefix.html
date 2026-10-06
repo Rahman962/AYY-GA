@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prefix – Ordförråd</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7fc;
+      color: #202338;
+      min-height: 100vh;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 58px 20px 48px;
+    }
+
+    .hero h1 {
+      font-size: 58px;
+      line-height: 1.12;
+      font-weight: 800;
+      margin-bottom: 22px;
+    }
+
+    .hero p {
+      color: #4c6289;
+      font-size: 20px;
+      line-height: 1.55;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 24px;
+      color: #315fd1;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .back:hover {
+      text-decoration: underline;
+    }
+
+    .tabs {
+      width: min(960px, calc(100% - 40px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: white;
+      border-radius: 14px 14px 0 0;
+      overflow: hidden;
+      box-shadow: 0 6px 24px rgba(35, 51, 90, 0.08);
+    }
+
+    .tab {
+      padding: 22px 12px;
+      text-align: center;
+      color: #263552;
+      text-decoration: none;
+      font-size: 19px;
+      border-right: 1px solid #e2e6ef;
+      background: white;
+    }
+
+    .tab:last-child {
+      border-right: none;
+    }
+
+    .tab.active {
+      color: white;
+      background: #3561d3;
+      font-weight: 700;
+    }
+
+    .content {
+      width: min(960px, calc(100% - 40px));
+      margin: 0 auto 60px;
+      background: white;
+      padding: 42px;
+      border-radius: 0 0 18px 18px;
+      box-shadow: 0 8px 28px rgba(35, 51, 90, 0.08);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .section-text {
+      text-align: center;
+      color: #66728a;
+      margin-bottom: 30px;
+      font-size: 17px;
+    }
+
+    .prefix-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 38px;
+    }
+
+    .prefix-card {
+      border: 1px solid #e1e6f0;
+      border-radius: 14px;
+      padding: 22px;
+      background: #fbfcff;
+      transition: 0.2s;
+    }
+
+    .prefix-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 22px rgba(49, 95, 209, 0.10);
+    }
+
+    .prefix {
+      display: inline-block;
+      color: #315fd1;
+      font-size: 25px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .meaning {
+      color: #5c6880;
+      margin-bottom: 10px;
+    }
+
+    .example {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .exercise {
+      background: #f5f7fc;
+      border-radius: 16px;
+      padding: 28px;
+      text-align: center;
+    }
+
+    .exercise h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .exercise p {
+      color: #5c6880;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      background: white;
+      border-radius: 12px;
+      padding: 22px;
+      font-size: 21px;
+      margin-bottom: 18px;
+      box-shadow: 0 3px 12px rgba(35, 51, 90, 0.06);
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .option {
+      border: 2px solid #d8dfed;
+      background: white;
+      border-radius: 10px;
+      padding: 13px;
+      font-size: 17px;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .option:hover {
+      border-color: #3561d3;
+      color: #315fd1;
+    }
+
+    .option.correct {
+      border-color: #2e9b62;
+      background: #eaf8f0;
+      color: #17633d;
+    }
+
+    .option.wrong {
+      border-color: #d95c5c;
+      background: #fff0f0;
+      color: #8f2e2e;
+    }
+
+    #feedback {
+      margin-top: 18px;
+      font-weight: 700;
+      min-height: 24px;
+    }
+
+    @media (max-width: 700px) {
+      .tabs {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .prefix-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .content {
+        padding: 25px 18px;
+      }
+
+      .options {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="hero">
+    <h1>Prefix</h1>
+
+    <p>
+      Lär dig vanliga prefix och förstå hur de förändrar betydelsen
+      av ord. Öva sedan på att känna igen rätt prefix.
+    </p>
+
+    <a class="back" href="index.html">
+      ← Till startsidan
+    </a>
+  </header>
+
+
+  <nav class="tabs">
+
+    <a class="tab" href="index.html">
+      Alla övningar
+    </a>
+
+    <a class="tab active" href="prefix.html">
+      Prefix
+    </a>
+
+    <a class="tab" href="suffix.html">
+      Suffix
+    </a>
+
+    <a class="tab" href="synonymer.html">
+      Synonymer
+    </a>
+
+  </nav>
+
+
+  <main class="content">
+
+    <h2 class="section-title">
+      Vanliga prefix
+    </h2>
+
+    <p class="section-text">
+      Ett prefix står framför ett ord och kan ändra eller förstärka ordets betydelse.
+    </p>
+
+
+    <section class="prefix-grid">
+
+      <article class="prefix-card">
+
+        <span class="prefix">
+          o-
+        </span>
+
+        <p class="meaning">
+          betyder ofta "inte"
+        </p>
+
+        <p class="example">
+          <strong>lycklig → olycklig</strong>
+        </p>
+
+      </article>
+
+
+      <article class="prefix-card">
+
+        <span class="prefix">
+          miss-
+        </span>
+
+        <p class="meaning">
+          något som görs fel
+        </p>
+
+        <p class="example">
+          <strong>förstå → missförstå</strong>
+        </p>
+
+      </article>
+
+
+      <article class="prefix-card">
+
+        <span class="prefix">
+          över-
+        </span>
+
+        <p class="meaning">
+          för mycket eller ovanför
+        </p>
+
+        <p class="example">
+          <strong>driva → överdriva</strong>
+        </p>
+
+      </article>
+
+
+      <article class="prefix-card">
+
+        <span class="prefix">
+          under-
+        </span>
+
+        <p class="meaning">
+          för lite eller nedanför
+        </p>
+
+        <p class="example">
+          <strong>utvecklad → underutvecklad</strong>
+        </p>
+
+      </article>
+
+
+      <article class="prefix-card">
+
+        <span class="prefix">
+          för-
+        </span>
+
+        <p class="meaning">
+          kan ändra betydelsen på olika sätt
+        </p>
+
+        <p class="example">
+          <strong>stå → förstå</strong>
+        </p>
+
+      </article>
+
+
+      <article class="prefix-card">
+
+        <span class="prefix">
+          sam-
+        </span>
+
+        <p class="meaning">
+          tillsammans
+        </p>
+
+        <p class="example">
+          <strong>arbete → samarbete</strong>
+        </p>
+
+      </article>
+
+    </section>
+
+
+    <section class="exercise">
+
+      <h3>
+        Snabbövning
+      </h3>
+
+      <p>
+        Vilket prefix passar bäst?
+      </p>
+
+
+      <div class="question">
+
+        Vad blir motsatsen till
+        <strong>möjlig</strong>?
+
+      </div>
+
+
+      <div class="options">
+
+        <button
+          class="option"
+          onclick="checkAnswer(this, false)">
+          sam-möjlig
+        </button>
+
+        <button
+          class="option"
+          onclick="checkAnswer(this, true)">
+          omöjlig
+        </button>
+
+        <button
+          class="option"
+          onclick="checkAnswer(this, false)">
+          över-möjlig
+        </button>
+
+        <button
+          class="option"
+          onclick="checkAnswer(this, false)">
+          missmöjlig
+        </button>
+
+      </div>
+
+
+      <div id="feedback"></div>
+
+    </section>
+
+  </main>
+
+
+  <script>
+
+    function checkAnswer(button, correct) {
+
+      const options =
+        document.querySelectorAll(".option");
+
+      const feedback =
+        document.getElementById("feedback");
+
+
+      options.forEach(option => {
+
+        option.classList.remove(
+          "correct",
+          "wrong"
+        );
+
+        option.disabled = true;
+
+      });
+
+
+      if (correct) {
+
+        button.classList.add("correct");
+
+        feedback.textContent =
+          "Rätt! Prefixet o- kan betyda inte.";
+
+        feedback.style.color =
+          "#17633d";
+
+      } else {
+
+        button.classList.add("wrong");
+
+        feedback.textContent =
+          "Inte riktigt. Tänk på prefixet o- som ofta betyder inte.";
+
+        feedback.style.color =
+          "#8f2e2e";
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
