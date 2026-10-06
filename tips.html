@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tips & knep – AYY-HP</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <a class="logo" href="index.html">AYY-HP</a>
+
+        <svg class="menu-icon" onclick="toggleMenu()" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 16 16">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                d="m2.75 12.25h10.5m-10.5-4h10.5m-10.5-4h10.5" />
+        </svg>
+
+        <nav class="main-nav" id="mainNav">
+            <a href="ovningar.html">Övningar</a>
+            <a href="resultat.html">Resultat</a>
+            <a class="active" href="tips.html">Tips</a>
+            <a class="btn btn-outline" href="login.html">Logga in</a>
+        </nav>
+    </header>
+
+    <section class="page-intro">
+        <div class="page-intro-content">
+            <h1 class="page-title">Tips &amp; knep</h1>
+            <p class="page-text">Kortfattade regler som ofta löser en fråga snabbare. Använd dem när du fastnar på en övning.</p>
+        </div>
+    </section>
+
+    <main>
+        <section class="tips-section">
+            <div class="tips-grid">
+                <article class="tip-card">
+                    <h3>Prefixet "o-" vänder betydelsen</h3>
+                    <p>Många ord blir sin motsats med "o-" framför. Om du känner igen grundordet kan du ofta räkna ut resten.</p>
+                    <div class="tip-example">vanlig → <span>o</span>vanlig</div>
+                    <div class="tip-popup">Fler exempel: <strong>lycklig → olycklig</strong>, <strong>möjlig → omöjlig</strong></div>
+                </article>
+
+                <article class="tip-card">
+                    <h3>Suffixet "-het" gör ordet till ett substantiv</h3>
+                    <p>Ändelsen "-het" byggs ofta på adjektiv och beskriver ett tillstånd eller en egenskap.</p>
+                    <div class="tip-example">skön → skön<span>het</span></div>
+                    <div class="tip-popup">Fler exempel: <strong>snabb → snabbhet</strong>, <strong>trygg → trygghet</strong></div>
+                </article>
+
+                <article class="tip-card">
+                    <h3>Suffixet "-lig" gör ordet till ett adjektiv</h3>
+                    <p>Ändelsen "-lig" läggs ofta till ett substantiv eller verb och beskriver en egenskap.</p>
+                    <div class="tip-example">fara → far<span>lig</span></div>
+                    <div class="tip-popup">Fler exempel: <strong>vän → vänlig</strong>, <strong>tro → trolig</strong></div>
+                </article>
+
+                <article class="tip-card">
+                    <h3>Leta efter kända ordstammar</h3>
+                    <p>Ett svårt ord innehåller ofta en del du redan känner igen – den delen ger ofta en ledtråd till betydelsen.</p>
+                    <div class="tip-example">miss<span>-tänksam</span></div>
+                    <div class="tip-popup">"Miss-" signalerar ofta något negativt: <strong>missnöjd</strong>, <strong>misslyckas</strong></div>
+                </article>
+
+                <article class="tip-card">
+                    <h3>Uteslut det du är säker på inte stämmer</h3>
+                    <p>Sortera bort alternativ som tydligt är fel innan du väljer – det ökar chansen att gissa rätt.</p>
+                    <div class="tip-example">A ✗ &nbsp; B ✓ &nbsp; C ✗</div>
+                    <div class="tip-popup">Även om du bara kan utesluta ett alternativ ökar dina odds att gissa rätt.</div>
+                </article>
+
+                <article class="tip-card">
+                    <h3>Prefixet "för-" kan betyda "för mycket"</h3>
+                    <p>I många ord signalerar "för-" en överdrift eller ett fel, t.ex. att något gått för långt.</p>
+                    <div class="tip-example"><span>för</span>bruka</div>
+                    <div class="tip-popup">Fler exempel: <strong>förbruka</strong>, <strong>förbise</strong>, <strong>förutse</strong></div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-banner">
+            <div>
+                <h3>Redo att testa tipsen?</h3>
+                <p>Gör en övning och se om de nya knepen gör skillnad.</p>
+            </div>
+            <a class="btn btn-primary" href="ovningar.html">Starta övning</a>
+        </div>
+
+        <div class="footer-bottom">
+            <span class="logo">AYY-HP</span>
+            <a href="login.html">Logga in</a>
+            <p>Skolprojekt av Yaman,Yacoub,Abdulrahamn</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
