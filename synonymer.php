@@ -1,6 +1,6 @@
 <?php
+session_start();
 
-// Frågor: text, svarsalternativ och rätt bokstav
 $fragor = [
     1 => [
         "text" => 'Vad betyder "benägen"?',
@@ -42,7 +42,7 @@ $fragor = [
 
 $harRattat = false;
 $poang = 0;
-$svarFran = []; // sparar vad användaren svarade, så vi kan visa det efter rättning
+$svarFran = [];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $harRattat = true;
@@ -54,6 +54,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($valtSvar === $fraga["ratt"]) {
             $poang++;
         }
+    }
+
+    if (isset($_SESSION["namn"])) {
+        $rad = $_SESSION["namn"] . ";" . date("Y-m-d H:i") . ";Synonymer;" . $poang . ";" . count($fragor) . "\n";
+        file_put_contents("resultat.txt", $rad, FILE_APPEND);
     }
 }
 
@@ -80,10 +85,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </svg>
 
         <nav class="main-nav" id="mainNav">
-            <a href="ovningar.html">Övningar</a>
-            <a href="resultat.html">Resultat</a>
+            <a href="index.html">Övningar</a>
+            <a href="resultat.php">Resultat</a>
             <a href="tips.html">Tips</a>
-            <a class="btn btn-outline" href="login.html">Logga in</a>
+            <a class="btn btn-outline" href="login.php">Logga in</a>
         </nav>
     </header>
 
@@ -95,6 +100,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </section>
 
     <main>
+        <?php if (!isset($_SESSION["namn"])): ?>
+            <p style="text-align:center;">Du är inte inloggad, så resultatet sparas inte. <a href="login.php">Logga in här</a>.</p>
+        <?php endif; ?>
+
         <form class="word-quiz" method="post" action="synonymer.php">
 
             <?php foreach ($fragor as $nr => $fraga): ?>
@@ -150,8 +159,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         <div class="footer-bottom">
             <span class="logo">AYY-HP</span>
-            <a href="login.html">Logga in</a>
-            <p>Skolprojekt av AYY</p>
+            <a href="login.php">Logga in</a>
+            <p>Skolprojekt av Yaman, Yacoub, Abdulrahamn</p>
         </div>
     </footer>
 

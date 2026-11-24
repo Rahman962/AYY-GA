@@ -104,6 +104,10 @@ if (isset($_POST['nasta']) && !empty($_SESSION['svarat'])) {
     $_SESSION['svarat'] = false;
     $_SESSION['valt'] = null;
     if ($_SESSION['nr'] >= $antal) {
+        if (isset($_SESSION['namn'])) {
+            $rad = $_SESSION['namn'] . ";" . date("Y-m-d H:i") . ";Suffix;" . $_SESSION['poang'] . ";" . $antal . "\n";
+            file_put_contents("resultat.txt", $rad, FILE_APPEND);
+        }
         header('Location: suffix.php?klar=1');
         exit;
     }
@@ -131,7 +135,7 @@ $valt = isset($_SESSION['valt']) ? $_SESSION['valt'] : null;
 <body>
 
     <header class="site-header">
-        <a class="logo" href="index.php">AYY-HP</a>
+        <a class="logo" href="index.html">AYY-HP</a>
 
         <svg class="menu-icon" onclick="document.getElementById('mainNav').classList.toggle('open')" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 16 16">
             <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -139,10 +143,10 @@ $valt = isset($_SESSION['valt']) ? $_SESSION['valt'] : null;
         </svg>
 
         <nav class="main-nav" id="mainNav">
-            <a href="ovningar.html">Övningar</a>
-            <a href="resultat.html">Resultat</a>
+            <a href="index.html">Övningar</a>
+            <a href="resultat.php">Resultat</a>
             <a href="tips.html">Tips</a>
-            <a class="btn btn-outline" href="login.html">Logga in</a>
+            <a class="btn btn-outline" href="login.php">Logga in</a>
         </nav>
     </header>
 
@@ -154,10 +158,10 @@ $valt = isset($_SESSION['valt']) ? $_SESSION['valt'] : null;
     </section>
 
     <nav class="category-nav">
-        <a class="category-link" href="index.php">Alla övningar</a>
+        <a class="category-link" href="index.html">Alla övningar</a>
         <a class="category-link" href="prefix.html">Prefix</a>
         <a class="category-link active" href="suffix.php">Suffix</a>
-        <a class="category-link" href="synonymer.html">Synonymer</a>
+        <a class="category-link" href="synonymer.php">Synonymer</a>
     </nav>
 
     <main>
@@ -176,12 +180,15 @@ $valt = isset($_SESSION['valt']) ? $_SESSION['valt'] : null;
                     } elseif ($procent >= 50) {
                         $msg = "Okej resultat – $poang av $antal rätt ($procent %). Öva gärna igen.";
                     } else {
-                        $msg = "Du fick $poang av $antal rätt ($procent %). Titta på tippsen och prova igen!";
+                        $msg = "Du fick $poang av $antal rätt ($procent %). Titta på tipsen och prova igen!";
                     }
                     ?>
                     <p class="quiz-desc"><?php echo $msg; ?></p>
+                    <?php if (!isset($_SESSION['namn'])): ?>
+                        <p class="quiz-desc">Du är inte inloggad, så resultatet sparades inte. <a href="login.php">Logga in här</a>.</p>
+                    <?php endif; ?>
                     <a class="btn btn-primary" href="suffix.php?start=1">Öva igen</a>
-                    <a class="btn btn-outline" href="resultat.html">Spara resultat</a>
+                    <a class="btn btn-outline" href="resultat.php">Se mina resultat</a>
                 </div>
 
             <?php elseif (!$startad): ?>
@@ -265,15 +272,16 @@ $valt = isset($_SESSION['valt']) ? $_SESSION['valt'] : null;
                 <h3>Håll koll på din utveckling.</h3>
                 <p>Se dina sparade resultat och jämför övning för övning.</p>
             </div>
-            <a class="btn btn-primary" href="resultat.html">Se resultat</a>
+            <a class="btn btn-primary" href="resultat.php">Se resultat</a>
         </div>
 
         <div class="footer-bottom">
             <span class="logo">AYY-HP</span>
-            <a href="login.html">Logga in</a>
-            <p>Skolprojekt av AYY</p>
+            <a href="login.php">Logga in</a>
+            <p>Skolprojekt av Yaman, Yacoub, Abdulrahamn</p>
         </div>
     </footer>
 
 </body>
+
 </html>
